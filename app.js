@@ -16,7 +16,7 @@ class Server{
 
         this.app.set("views", path.join(__dirname,'views'));
         
-        this.app.engine('.hbs',exphbs({
+        this.app.engine('.hbs',exphbs.engine({
             defaultLayout: 'main',
             layoutsDir: path.join(this.app.get('views'), 'layouts'),
             partialsDir: path.join(this.app.get('views'), 'partials'),
@@ -29,19 +29,19 @@ class Server{
     }
     routes(){
         this.app.get('/',(req,res)=>{
-            res.render('home.hbs')
+            res.render('home')
         })
-        this.app.get('/panel.hbs',(req,res)=>{
-            res.render('panel')
+        this.app.get('/panels',(req,res)=>{
+            res.render('panels')
         })
-        this.app.get('/trailers.hbs',(req,res)=>{
+        this.app.get('/trailers',(req,res)=>{
             res.render('trailers')
         })
     }
 
     listen(){
         this.app.listen(this.port,()=>{
-            console.log('servidor corriendo en el puerto: ',this.port)
+            console.log('Corriendo en el localHost: ',this.port)
         })
     }
 }
